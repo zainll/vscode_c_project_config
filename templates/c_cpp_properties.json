@@ -4,15 +4,18 @@
     //不需要CMake也可以直接编写C/C++
     "configurations": [
         {
-            "name": "Linux",
+            //"name": "Linux",
+            "name": "mingw64",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/clang",
+            //"compilerPath": "/usra/bin/clang",
+            "compilerPath": "D:\\mingw64\\bin\\gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "clang-x64"
+            //"intelliSenseMode": "clang-x64"
+            "intelliSenseMode": "gcc-x64"
         }
     ],
     "version": 4

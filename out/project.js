@@ -25,6 +25,7 @@ class Project {
                 const tasksPath = path.join(this.context.extensionPath, 'templates', 'tasks.json');
                 const launchPath = path.join(this.context.extensionPath, 'templates', 'launch.json');
                 const settingsPath = path.join(this.context.extensionPath, 'templates', 'settings.json');
+                const propertiesPath = path.join(this.context.extensionPath, 'templates', 'c_cpp_properties.json');
                 
                 const mainPath = path.join(this.context.extensionPath, 'templates', type, `main.${type}`);
                 const mainCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', type, 'CMakeLists.txt');               
@@ -40,6 +41,7 @@ class Project {
                 fs.writeFileSync(path.join(location, '.vscode', 'tasks.json'), fs.readFileSync(tasksPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, '.vscode', 'launch.json'), fs.readFileSync(launchPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, '.vscode', 'settings.json'), fs.readFileSync(settingsPath, 'utf-8'));
+                fs.writeFileSync(path.join(location, '.vscode', 'c_cpp_properties.json'), fs.readFileSync(propertiesPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', `main.${type}`), fs.readFileSync(mainPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
