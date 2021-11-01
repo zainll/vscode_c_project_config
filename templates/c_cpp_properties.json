@@ -12,6 +12,7 @@
             ],
             "defines": [],
             //"compilerPath": "/usra/bin/clang",
+            //"compilerPath": "D:\\OpenSoftware\\LLVM_mingw64\\bin\\clang++.exe",
             "compilerPath": "D:\\mingw64\\bin\\gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++17",
