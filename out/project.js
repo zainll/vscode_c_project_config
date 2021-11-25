@@ -31,6 +31,7 @@ class Project {
                 const mainCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', type, 'CMakeLists.txt');               
                 const sumfilePath = path.join(this.context.extensionPath, 'templates', type, 'AddTwoNumber.c');             
                 const sumHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'AddTwoNumber.h');             
+                const zlogHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'zlog.h');             
 
                 const makefilePath = path.join(this.context.extensionPath, 'templates', type, 'Makefile');
                 const CMakeListsfilePath = path.join(this.context.extensionPath, 'templates', 'CMakeLists.txt');
@@ -46,6 +47,7 @@ class Project {
                 fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'include', 'AddTwoNumber.h'), fs.readFileSync(sumHeaderfilePath, 'utf-8'));
+                fs.writeFileSync(path.join(location, 'include', 'zlog.h'), fs.readFileSync(zlogHeaderfilePath, 'utf-8'));
 
                 fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
@@ -69,6 +71,16 @@ class Project {
                 const gtestfilePath = path.join(this.context.extensionPath, 'templates', 'tests', 'googletest');
                 const resultPath = path.join(location, 'tests', 'googletest')
                 fs.copy(gtestfilePath, resultPath, function (err) { 
+                    if (err){ 
+                        console.log('An error occured while copying the folder.') 
+                        return console.error(err) 
+                    } 
+                    console.log('Copy completed!') 
+                    });
+
+                const libfilePath = path.join(this.context.extensionPath, 'templates', 'lib');
+                const libresultPath = path.join(location, 'lib')
+                fs.copy(libfilePath, libresultPath, function (err) { 
                     if (err){ 
                         console.log('An error occured while copying the folder.') 
                         return console.error(err) 

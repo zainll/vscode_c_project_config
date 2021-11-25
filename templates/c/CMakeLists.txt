@@ -7,7 +7,7 @@ cmake_minimum_required (VERSION 3.0) #最低要求的CMake版本
 #)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
-
+link_directories(${CMAKE_CURRENT_SOURCE_DIR}/../lib)
 #SET(INCLUDE ${CMAKE_SOURCE_DIR}/include)
 set(CMAKE_UNITY_BUILD ON)
 
@@ -23,11 +23,13 @@ ADD_COMPILE_OPTIONS("-Wall")
 #ADD_LIBRARY(hello ${SOURCE})
 #add_subdirectory(src)
 #add_library(hello hello.c)
+link_libraries(${CMAKE_CURRENT_SOURCE_DIR}/../lib)
+link_directories(${LINK_DIR})
 ADD_LIBRARY(hello ${SOURCE})
 
 #TARGET_INCLUDE_DIRECTORIES(hello PUBLIC "${INCLUDE}")
 #ADD_EXECUTABLE(main ${CMAKE_CURRENT_SOURCE_DIR}/Main.cpp)
 ADD_EXECUTABLE(main ${CMAKE_CURRENT_SOURCE_DIR}/main.c)
 #TARGET_LINK_LIBRARIES(main hello)
-target_link_libraries(main PRIVATE hello)
-
+#target_link_libraries(main PRIVATE hello)
+TARGET_LINK_LIBRARIES(main hello zlog)

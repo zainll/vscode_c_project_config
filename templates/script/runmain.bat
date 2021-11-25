@@ -7,6 +7,8 @@ if not exist build/src/main.exe (
 	exit(1)
 )
 
+copy /y  lib\* build\src\
+
 cd build/src
 
 main.exe
