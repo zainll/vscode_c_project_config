@@ -26,6 +26,7 @@ class Project {
                 const launchPath = path.join(this.context.extensionPath, 'templates', 'launch.json');
                 const settingsPath = path.join(this.context.extensionPath, 'templates', 'settings.json');
                 const propertiesPath = path.join(this.context.extensionPath, 'templates', 'c_cpp_properties.json');
+                const readmedPath = path.join(this.context.extensionPath, 'templates', 'README.md');
                 
                 const mainPath = path.join(this.context.extensionPath, 'templates', type, `main.${type}`);
                 const mainCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', type, 'CMakeLists.txt');               
@@ -43,6 +44,7 @@ class Project {
                 fs.writeFileSync(path.join(location, '.vscode', 'launch.json'), fs.readFileSync(launchPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, '.vscode', 'settings.json'), fs.readFileSync(settingsPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, '.vscode', 'c_cpp_properties.json'), fs.readFileSync(propertiesPath, 'utf-8'));
+
                 fs.writeFileSync(path.join(location, 'src', `main.${type}`), fs.readFileSync(mainPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
@@ -51,7 +53,9 @@ class Project {
 
                 fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
-                
+                fs.writeFileSync(path.join(location, 'README.md'), fs.readFileSync(readmedPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'README.md'), fs.readFileSync(readmedPath, 'utf-8'));
+
                 fs.writeFileSync(path.join(location, 'tests', 'CMakeLists.txt'), fs.readFileSync(testsCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'tests', 'Test.cpp'), fs.readFileSync(testsMainfilePath, 'utf-8'));
                 
