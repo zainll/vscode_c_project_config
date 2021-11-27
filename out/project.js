@@ -48,8 +48,8 @@ class Project {
                 fs.writeFileSync(path.join(location, 'src', `main.${type}`), fs.readFileSync(mainPath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'include', 'AddTwoNumber.h'), fs.readFileSync(sumHeaderfilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'include', 'zlog.h'), fs.readFileSync(zlogHeaderfilePath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'include', 'AddTwoNumber.h'), fs.readFileSync(sumHeaderfilePath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'include', 'zlog.h'), fs.readFileSync(zlogHeaderfilePath, 'utf-8'));
 
                 fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
@@ -62,6 +62,16 @@ class Project {
                 vscode.workspace.openTextDocument(path.join(location, 'src', 'main.cpp'))
                     .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
                 
+                const includefilePath = path.join(this.context.extensionPath, 'templates', 'include');
+                const includePath = path.join(location, 'include')
+                fs.copy(includefilePath, includePath, function (err) { 
+                    if (err){ 
+                        console.log('An error occured while copying the folder.') 
+                        return console.error(err) 
+                    } 
+                    console.log('Copy completed!') 
+                    });
+
                 const batfilePath = path.join(this.context.extensionPath, 'templates', 'script');
                 const scriptPath = path.join(location, 'script')
                 fs.copy(batfilePath, scriptPath, function (err) { 
