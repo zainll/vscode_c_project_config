@@ -1,0 +1,145 @@
+{
+    "version": "2.0.0",
+
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/build.bat",
+  
+            "problemMatcher": {
+                "source": "compile",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "label": "runmain",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/runmain.bat",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "build and runmain",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/build_and_runmain.bat",
+            "problemMatcher": []
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/clean.bat",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/run.bat",
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "build and run",
+            "type": "shell",
+            "command": "${workspaceRoot}/script/build_and_run.bat",
+            "problemMatcher": []
+        }
+    ]
+
+/*     "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-c",
+                    "mingw32-make"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
+            }
+        },
+        {
+            "label": "build & run",
+            "type": "shell",
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-c",
+                    "'mingw32-make run'"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            }
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "windows": {
+                "command": "powershell",
+                "args": [
+                    "-c",
+                    "'mingw32-make clean'"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make clean'"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make clean'"
+                ]
+            }
+        }
+    ] */
+}

@@ -28,11 +28,12 @@ class Project {
                 const propertiesPath = path.join(this.context.extensionPath, 'templates', 'c_cpp_properties.json');
                 const readmedPath = path.join(this.context.extensionPath, 'templates', 'README.md');
                 
-                const mainPath = path.join(this.context.extensionPath, 'templates', type, `main.${type}`);
-                const mainCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', type, 'CMakeLists.txt');               
-                const sumfilePath = path.join(this.context.extensionPath, 'templates', type, 'AddTwoNumber.c');             
-                const sumHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'AddTwoNumber.h');             
-                const zlogHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'zlog.h');             
+                //const mainPath = path.join(this.context.extensionPath, 'templates', type, `main.${type}`);
+                //const mainCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', type, 'CMakeLists.txt');               
+                //const sumfilePath = path.join(this.context.extensionPath, 'templates', type, 'AddTwoNumber.c');             
+                
+                //const sumHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'AddTwoNumber.h');             
+                //const zlogHeaderfilePath = path.join(this.context.extensionPath, 'templates', 'include', 'zlog.h');             
 
                 const makefilePath = path.join(this.context.extensionPath, 'templates', type, 'Makefile');
                 const CMakeListsfilePath = path.join(this.context.extensionPath, 'templates', 'CMakeLists.txt');
@@ -40,30 +41,57 @@ class Project {
                 const testsCMakeListsfilePath = path.join(this.context.extensionPath, 'templates', 'tests', 'CMakeLists.txt');
                 const testsMainfilePath = path.join(this.context.extensionPath, 'templates', 'tests', 'Test.cpp');
 
-                fs.writeFileSync(path.join(location, '.vscode', 'tasks.json'), fs.readFileSync(tasksPath, 'utf-8'));
-                fs.writeFileSync(path.join(location, '.vscode', 'launch.json'), fs.readFileSync(launchPath, 'utf-8'));
-                fs.writeFileSync(path.join(location, '.vscode', 'settings.json'), fs.readFileSync(settingsPath, 'utf-8'));
-                fs.writeFileSync(path.join(location, '.vscode', 'c_cpp_properties.json'), fs.readFileSync(propertiesPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, '.vscode', 'tasks.json'), fs.readFileSync(tasksPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, '.vscode', 'launch.json'), fs.readFileSync(launchPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, '.vscode', 'settings.json'), fs.readFileSync(settingsPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, '.vscode', 'c_cpp_properties.json'), fs.readFileSync(propertiesPath, 'utf-8'));
 
-                fs.writeFileSync(path.join(location, 'src', `main.${type}`), fs.readFileSync(mainPath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
-                //fs.writeFileSync(path.join(location, 'include', 'AddTwoNumber.h'), fs.readFileSync(sumHeaderfilePath, 'utf-8'));
-                //fs.writeFileSync(path.join(location, 'include', 'zlog.h'), fs.readFileSync(zlogHeaderfilePath, 'utf-8'));
-
-                fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'README.md'), fs.readFileSync(readmedPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'src', `main.${type}`), fs.readFileSync(mainPath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'src', 'CMakeLists.txt'), fs.readFileSync(mainCMakeListsfilePath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'src', 'AddTwoNumber.c'), fs.readFileSync(sumfilePath, 'utf-8'));
+                
                 //fs.writeFileSync(path.join(location, 'README.md'), fs.readFileSync(readmedPath, 'utf-8'));
-
+                //fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
+              
                 fs.writeFileSync(path.join(location, 'tests', 'CMakeLists.txt'), fs.readFileSync(testsCMakeListsfilePath, 'utf-8'));
                 fs.writeFileSync(path.join(location, 'tests', 'Test.cpp'), fs.readFileSync(testsMainfilePath, 'utf-8'));
                 
                 vscode.workspace.openTextDocument(path.join(location, 'src', 'main.cpp'))
                     .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
                 
+                const vscodeFilePath = path.join(this.context.extensionPath, 'templates', `${type}_vscode`);
+                const vscodePath = path.join(location, '.vscode');
+                fs.copy(vscodeFilePath, vscodePath, function (err) { 
+                    if (err){ 
+                        console.log('An error occured while copying the folder.') 
+                        return console.error(err) 
+                    } 
+                    console.log('Copy completed!') 
+                    });
+
+                const projctFilePath = path.join(this.context.extensionPath, 'templates', `${type}_project`);
+                const projctPath = path.join(location, '');
+                fs.copy(projctFilePath, projctPath, function (err) { 
+                    if (err){ 
+                        console.log('An error occured while copying the folder.') 
+                        return console.error(err) 
+                    } 
+                    console.log('Copy completed!') 
+                    });
+                
+                const srcFilePath = path.join(this.context.extensionPath, 'templates', type);
+                const srcPath = path.join(location, 'src');
+                fs.copy(srcFilePath, srcPath, function (err) { 
+                    if (err){ 
+                        console.log('An error occured while copying the folder.') 
+                        return console.error(err) 
+                    } 
+                    console.log('Copy completed!') 
+                    });
+                
                 const includefilePath = path.join(this.context.extensionPath, 'templates', 'include');
-                const includePath = path.join(location, 'include')
+                const includePath = path.join(location, 'include');
                 fs.copy(includefilePath, includePath, function (err) { 
                     if (err){ 
                         console.log('An error occured while copying the folder.') 

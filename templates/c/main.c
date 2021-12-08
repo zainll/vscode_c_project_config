@@ -26,7 +26,7 @@ int main()
 	int c = addTwoNumber(a, b);
 	printf("c = %d\n", c);
 	
-	zlog_info(zc, "hello zlog.\r");
+	zlog_info(zc, "main zlog.\r");
 	
 	zlog_fini();
 	return (0);
