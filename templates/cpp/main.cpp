@@ -16,7 +16,7 @@ int main(int argc, char *argv[])
 	int a = 3;
 	int b = 2;
 	int c = addTwoNumber(a, b);
-	std::cout << "c = %d" << c << std::endl;
+	std::cout << "c = " << c << std::endl;
 	LOG(INFO) << "My first info log using default logger";  
 	std::cout << "Hello world!" << std::endl;
 }
