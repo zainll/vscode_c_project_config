@@ -54,8 +54,9 @@ class Project {
                 //fs.writeFileSync(path.join(location, 'Makefile'), fs.readFileSync(makefilePath, 'utf-8'));
                 //fs.writeFileSync(path.join(location, 'CMakeLists.txt'), fs.readFileSync(CMakeListsfilePath, 'utf-8'));
               
-                fs.writeFileSync(path.join(location, 'tests', 'CMakeLists.txt'), fs.readFileSync(testsCMakeListsfilePath, 'utf-8'));
-                fs.writeFileSync(path.join(location, 'tests', 'Test.cpp'), fs.readFileSync(testsMainfilePath, 'utf-8'));
+                
+                //fs.writeFileSync(path.join(location, 'tests', 'CMakeLists.txt'), fs.readFileSync(testsCMakeListsfilePath, 'utf-8'));
+                //fs.writeFileSync(path.join(location, 'tests', 'Test.cpp'), fs.readFileSync(testsMainfilePath, 'utf-8'));
                 
                 vscode.workspace.openTextDocument(path.join(location, 'src', 'main.cpp'))
                     .then(doc => vscode.window.showTextDocument(doc, { preview: false }));
@@ -90,7 +91,7 @@ class Project {
                     console.log('Copy completed!') 
                     });
                 
-                const includefilePath = path.join(this.context.extensionPath, 'templates', 'include');
+                const includefilePath = path.join(this.context.extensionPath, 'templates', `${type}_include`);
                 const includePath = path.join(location, 'include');
                 fs.copy(includefilePath, includePath, function (err) { 
                     if (err){ 
@@ -110,8 +111,8 @@ class Project {
                     console.log('Copy completed!') 
                     });
 
-                const gtestfilePath = path.join(this.context.extensionPath, 'templates', 'tests', 'googletest');
-                const resultPath = path.join(location, 'tests', 'googletest')
+                const gtestfilePath = path.join(this.context.extensionPath, 'templates', `${type}_tests`);
+                const resultPath = path.join(location, 'tests')
                 fs.copy(gtestfilePath, resultPath, function (err) { 
                     if (err){ 
                         console.log('An error occured while copying the folder.') 
@@ -120,7 +121,7 @@ class Project {
                     console.log('Copy completed!') 
                     });
 
-                const libfilePath = path.join(this.context.extensionPath, 'templates', 'lib');
+                const libfilePath = path.join(this.context.extensionPath, 'templates', `${type}_lib`);
                 const libresultPath = path.join(location, 'lib')
                 fs.copy(libfilePath, libresultPath, function (err) { 
                     if (err){ 
