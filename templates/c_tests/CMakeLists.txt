@@ -3,10 +3,10 @@ set(CMAKE_UNITY_BUILD ON)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../include)
 ADD_SUBDIRECTORY(googletest EXCLUDE_FROM_ALL)
 AUX_SOURCE_DIRECTORY(. SOURCE)
-ADD_EXECUTABLE(helloTest ${SOURCE})
-TARGET_LINK_LIBRARIES(helloTest hello gtest_main gmock_main)
+ADD_EXECUTABLE(test_Test ${SOURCE})
+TARGET_LINK_LIBRARIES(test_Test addTwoNum gtest_main gmock_main)
 
-ADD_TEST(NAME helloTest COMMAND helloTest)
+ADD_TEST(NAME test_Test COMMAND test_Test)
 
 
 #################################################################
