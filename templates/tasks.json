@@ -5,59 +5,148 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "${workspaceRoot}/script/build.bat",
-  
-            "problemMatcher": {
-                "source": "compile",
-                "fileLocation": [
-                    "relative",
-                    "${workspaceRoot}"
-                ],
-                "pattern": {
-                    "regexp": "(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
-                    "file": 1,
-                    "line": 2,
-                    "column": 3,
-                    "severity": 4,
-                    "message": 5
+
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": {
+                "command": "${workspaceRoot}/script/build.bat",
+    
+                "problemMatcher": {
+                    "source": "compile",
+                    "fileLocation": [
+                        "relative",
+                        "${workspaceRoot}"
+                    ],
+                    "pattern": {
+                        "regexp": "(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                        "file": 1,
+                        "line": 2,
+                        "column": 3,
+                        "severity": 4,
+                        "message": 5
+                    }
                 }
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "make"
+                ]
             }
+
         },
         {
             "label": "runmain",
             "type": "shell",
-            "command": "${workspaceRoot}/script/runmain.bat",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "windows": {
+                "command": "${workspaceRoot}/script/runmain.bat",
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            }
+
         },
         {
             "label": "build and runmain",
             "type": "shell",
-            "command": "${workspaceRoot}/script/build_and_runmain.bat",
-            "problemMatcher": []
+            "windows": {
+                "command": "${workspaceRoot}/script/build_and_runmain.bat",
+                "problemMatcher": []
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            }
         },
         {
             "label": "clean",
             "type": "shell",
-            "command": "${workspaceRoot}/script/clean.bat",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "windows": {
+                "command": "${workspaceRoot}/script/clean.bat",
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make clean'"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make clean'"
+                ]
+            }
         },
         {
             "label": "run",
             "type": "shell",
-            "command": "${workspaceRoot}/script/run.bat",
-            "problemMatcher": [
-                "$gcc"
-            ]
+            "windows": {
+                "command": "${workspaceRoot}/script/run.bat",
+                "problemMatcher": [
+                    "$gcc"
+                ]
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            }
         },
         {
             "label": "build and run",
             "type": "shell",
-            "command": "${workspaceRoot}/script/build_and_run.bat",
-            "problemMatcher": []
+            "windows": {
+                "command": "${workspaceRoot}/script/build_and_run.bat",
+                "problemMatcher": []
+            },
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            },
+            "osx": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "'make run'"
+                ]
+            }
         }
     ]
 
